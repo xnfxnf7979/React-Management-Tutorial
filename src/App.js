@@ -2,19 +2,36 @@
 
 import React, {Component} from "react";
 import Customer from "./components/Customer";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import { withStyles, WithStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
 
+const style = theme => ({
+  root: {
+    width: '100%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto'
+  },
+  table:  {
+    minWidth: 1080
+  }
+})
 
 const customer = [{
   'id': 1,
-  'image': 'https://placeimg.com/768/224/15',
+  'image': 'https://placeimg.com/60/60/1',
   'name': 'hms',
-  'birthday': '980406',
+  'birthday': '891106',
   'gender': 'male',
   'job': 'junior'
 },
 {
   'id': 2,
-  'image': 'https://placeimg.com/768/224/2',
+  'image': 'https://placeimg.com/60/60/2',
   'name': 'ymj',
   'birthday': '980506',
   'gender': 'female',
@@ -22,58 +39,37 @@ const customer = [{
 },
 {
   'id': 3,
-  'image': 'https://placeimg.com/768/224/4',
+  'image': 'https://placeimg.com/60/60/4',
   'name': 'bjy',
   'birthday': '750405',
-  'gender': 'male',
-  'job': 'junior'
+  'gender': 'female',
+  'job': 'senior'
 }]
 
 class App extends Component {
   render () {
+    const {classes} = this.props
     return (
-      <div>
-      {/* <Customer
-        id = {customer[0].id}
-        image = {customer[0].image}
-        name={customer[0].name}
-        birthday= {customer[0].birthday}
-        gender = {customer[0].gender}
-        job ={customer[0].job}
-      />
-      <Customer
-        id = {customer[1].id}
-        image = {customer[1].image}
-        name={customer[1].name}
-        birthday= {customer[1].birthday}
-        gender = {customer[1].gender}
-        job ={customer[1].job}
-      />
-      <Customer
-        id = {customer[2].id}
-        image = {customer[2].image}
-        name={customer[2].name}
-        birthday= {customer[2].birthday}
-        gender = {customer[2].gender}
-        job ={customer[2].job} // >>>>> this code is bad !!!
-      /> */}
-      {
-        customer.map(c=> {
-          return (
-            <Customer 
-              key={c.id}
-              id={c.id}
-              name={c.name}
-              image={c.image}
-              birthday={c.birthday}
-              gender={c.gender}
-              job={c.job}
-            />
-          )
-        })
-      }
-      </div>
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>번호</TableCell>
+              <TableCell>이미지</TableCell>
+              <TableCell>이름</TableCell>
+              <TableCell>생년월일</TableCell>
+              <TableCell>성별</TableCell>
+              <TableCell>직업</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+        {customer.map(c=> {return (<Customer key={c.id} id={c.id} name={c.name} 
+                                            image={c.image} birthday={c.birthday} 
+                                            gender={c.gender} job={c.job}/>)})}
+        </TableBody>
+        </Table>
+      </Paper>
     )
   }
 }
-export default App; 
+export default withStyles(style)(App); 
