@@ -14,14 +14,14 @@ import { CircularProgress } from "@material-ui/core";
 const style = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     overflowX: 'auto'
   },
   table:  {
     minWidth: 1080
   },
   progress: {
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing(2)
   }
 })
 
@@ -72,7 +72,7 @@ class App extends Component {
                           }) : 
                           <TableRow>
                             <TableCell colSpan="6" align="center">
-                              <CircularProgress className={classes.progress} color="success" value={this.state.completed}/>
+                              <CircularProgress className={classes.progress} value={this.state.completed}/>
                             </TableCell>
                             </TableRow>
         }
