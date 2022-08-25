@@ -29,7 +29,7 @@ class CustomerAdd extends Component {
     }
 
     handleFormSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault() // 데이터만 입력, 새로고침 방지 
         this.addCustomer()
             .then((response) => {
                 console.log(response.data)
@@ -98,7 +98,7 @@ class CustomerAdd extends Component {
         const {classes} = this.props
         return (
             <div>
-                <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
+                <Button variant="contained" size="small" color="default" onClick={this.handleClickOpen}>
                     ADD Customers
                 </Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
